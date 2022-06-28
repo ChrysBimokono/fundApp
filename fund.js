@@ -77,7 +77,7 @@ input.addEventListener('input', function(e) {
     console.log(inputvalue);
     minValue= parseInt(input.min);
     console.log(minValue)
-    if(inputvalue == NaN){
+    if(question.textContent === ''){
         question.textContent= minValue;
     } else{
         question.textContent= inputvalue;
