@@ -8,9 +8,16 @@ const btn= document.querySelector('.give');
 
 const leftAmount= document.querySelector('#amount');
 const donors= document.querySelector('#donors');
+const question= document.querySelector('#question');
 
+console.log(input.min)
 
-let map={percentageMax:100, widthMax:300, maxInput:500};
+let map={
+    percentageMax :100, 
+    widthMax :300, 
+    maxInput :500
+};
+
 let currentWidth=0;
 let currentAmount=0;
 let currentDonnor=0;
@@ -57,7 +64,7 @@ function handleDonation(){
         return;
     }
     currentAmount =  localCurrentAmount;
-    
+    console.log(currentAmount);
     updateCurrentWidth(width);
  
     updateState(diff);
@@ -65,8 +72,17 @@ function handleDonation(){
   // 100-90
  }
 // Now we are selecting our input
-input.addEventListener('keyup', function() {
-    inputvalue= parseInt(input.value,10);
+input.addEventListener('input', function(e) {
+    inputvalue= parseInt(e.target.value);
+    console.log(inputvalue);
+    minValue= parseInt(input.min);
+    console.log(minValue)
+    if(inputvalue == NaN){
+        question.textContent= minValue;
+    } else{
+        question.textContent= inputvalue;
+    }
+   
 })
 
 btn.addEventListener('click', function(){
