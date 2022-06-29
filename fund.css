@@ -138,16 +138,16 @@ input[type="text"] {
     font-weight: bold;
     border: 1px solid var(--clr-light-grey);
     border-radius: 5px;
-    margin: 0.5rem 2.4rem 0.5rem 1rem;
+    margin: 0.5rem 2rem 0.5rem 1rem;
             /* top right bottom left */
   }
 
   .input_box{
-      width: 100px;
+      width: 110px;
   }
 
   button{
-      padding: 20px 20px;
+      padding: 20px 30px;
       border-radius: 5px;
       color: white;
       border: 1px solid var(--clr-light-grey);
@@ -169,13 +169,16 @@ article>p:last-of-type{
 .static_button{
     margin: 1rem 0;
     display: flex;
-    gap: 2.6rem;
+    gap: 2.4rem;
 }
 
   .static{
+     
+      font-family: var(--ff-serif);
+      font-size: 1rem;
       background-color: var(--clr-light-grey);
       color: var(--clr-grey);
-      padding: 10px 20px;
+      padding: 10px 21px;
       border: 1px solid var(--clr-light-grey);
       border-radius: 5px;
   }

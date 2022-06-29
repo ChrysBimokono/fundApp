@@ -68,18 +68,27 @@ function handleDonation(){
     }
     //update the current amount
     currentAmount =  localCurrentAmount;
+    
     console.log(currentAmount);
     updateCurrentWidth(width);
  
     updateState(diff);
+
+    input.value = '';
  }
 // Now we are selecting our input
 input.addEventListener('input', function(e) {
     inputvalue= parseInt(e.target.value);
-    minValue= parseInt(input.min);
+    //minValue= parseInt(input.min);
+
+    // This is to make sure that we enter a value greater than 0
+    if(inputvalue ===0){
+        alert('please enter an amount');
+        return;
+    }
     
     if(isNaN(inputvalue)){
-        question.textContent= minValue;
+        question.textContent= 0;
     } else {
         question.textContent = inputvalue;
     }
