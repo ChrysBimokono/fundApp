@@ -1,16 +1,13 @@
-const update_amount= document.querySelector('.amount');
 
 const progress= document.querySelector('.progress_done');
-console.log(progress)
+
 const input= document.querySelector('.input_box');
 
 const btn= document.querySelector('.give');
 
-const leftAmount= document.querySelector('#amount');
+const amountLeft= document.querySelector('#amount');
 const donors= document.querySelector('#donors');
 const question= document.querySelector('#question');
-
-console.log(input.min)
 
 let map={
     percentageMax :100, 
@@ -18,29 +15,22 @@ let map={
     maxInput :500
 };
 
+//our initial variables
 let currentWidth=0;
 let currentAmount=0;
 let currentDonnor=0;
-//creating our function to dynamically change our progress bar width
 
+// Calculate the percentage by input amount
 function calculatePercentage(){
     return (inputvalue / map.maxInput) * map.percentageMax;
 }
 
+//calculate the width based on the percentage 
 function calculateWidth(percentage){
    return (map.widthMax * percentage) / map.percentageMax;
 }
 
-function updateState(diff){
-
-    leftAmount.innerHTML = diff;
-
-    progress.style.width = `${currentWidth}px`;
-    
-    currentDonnor++;
-    donors.innerHTML=currentDonnor;
-}
-
+// Function to increase and update our width 
 function updateCurrentWidth(width){
     currentWidth += width;
     if(currentWidth >= map.widthMax){
@@ -48,40 +38,53 @@ function updateCurrentWidth(width){
     }
 }
 
+function updateState(diff){
+//update the amount left to be donated
+    amountLeft.innerHTML = diff;
+
+    //update our progress bar
+    progress.style.width = `${currentWidth}px`;
+    
+    // update the number of donnors
+    currentDonnor++;
+    donors.innerHTML=currentDonnor;
+}
 function handleDonation(){
-    let percentage = calculatePercentage(); //percenta
+    let percentage = calculatePercentage(); 
     let width =  calculateWidth(percentage);
     let diff=0;
 
+    // our current amount entered by the user
     let localCurrentAmount = currentAmount + inputvalue;
     
-
+//calculate the amount left after each donation
     diff = map.maxInput - localCurrentAmount;
-    
+
+   // check to see if the amount entered exceed the maximum amount for donation
     if(diff <0){
         diff=0;
         alert('amount exceeded ');
         return;
     }
+    //update the current amount
     currentAmount =  localCurrentAmount;
     console.log(currentAmount);
     updateCurrentWidth(width);
  
     updateState(diff);
-
-  // 100-90
  }
 // Now we are selecting our input
 input.addEventListener('input', function(e) {
     inputvalue= parseInt(e.target.value);
-    console.log(inputvalue);
     minValue= parseInt(input.min);
-    console.log(minValue)
-    if(question.textContent === ''){
+    
+    if(isNaN(inputvalue)){
         question.textContent= minValue;
-    } else{
-        question.textContent= inputvalue;
+    } else {
+        question.textContent = inputvalue;
     }
+    
+   
    
 })
 
